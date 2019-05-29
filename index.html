@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Robert Rules of Order</title>
+		<link rel="stylesheet" href="stylesheets/style.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	</head>
+	<body>
+		<h1>Parliament</h1>
+
+		<button type="button" id="call-to-order" style="display:block" onclick="callToOrder()">Call To Order</button>
+
+		<div id="roll-call" style="display:none">
+			<button   onclick="rollCall()">Call the Roll</button>
+		</div>
+		<div id="quorum-count" style="display:none">
+			<h3>Quorum Count</h3>
+			<!--Input the number of senators in country -->
+			<button id="clickme">Total Senators in Country: 0</button>
+
+			<!-- Running total of needed senators for a quorum-->
+			<p id="quorum">Required number of Senators for a quorum: 0</p>
+			<!--Running total of present senators -->
+			<p>Senators Present: 0</p>
+			<div id="confirm">
+				<div class="message"></div>
+				<button class="yes">Yes</button>
+				<button class="no">No</button>
+			</div>
+			<button onclick = 'functionConfirm("Is the Senator Present?", function yes() {
+         alert("Yes");
+         quorumCounting();
+      },
+      function no() {
+         alert("no")
+      });'>Count Senators Attendance</button><br/>
+
+
+		</div>
+
+		<div class="inline"><b>Current Proposal:</b> <input type="text"></div>
+		<button type="button" id="second" style="display:none" onclick="seconded()">Needs a second</button>
+		<div id="open-to-committee" style="display:none">
+			<button type="button" >Amend </button>
+			<button type="button" >Move to Committee</button>
+			<button type="button" >Postpone</button>
+			<button type="button" >Postpone</button>
+		</div>
+
+
+		<button type="button" onclick="show('id1');">Button 1</button>
+		<button type="button" onclick="show('id2');">Button 2</button>
+		<button type="button" onclick="show('id3');">Button 3</button>
+
+
+		<div id="id1"  style="display:none">text 1</div>
+		<div id="id2"  style="display:none">text 2</div>
+		<div id="id3"  style="display:none">text 3</div>
+		<script src="javascript/script.js"></script>
+	</body>
+</html>
