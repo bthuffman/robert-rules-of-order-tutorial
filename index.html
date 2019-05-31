@@ -2,9 +2,23 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<title>Robert Rules of Order</title>
 		<link rel="stylesheet" href="stylesheets/style.css">
+		<!--Bootstrap style-->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+				integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<!--Bootstrap Scripts-->
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+				  integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+				  crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+				  integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+				  crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+				  integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+				  crossorigin="anonymous"></script>
 	</head>
 	<body>
 		<h1>Parliament</h1>
@@ -14,15 +28,18 @@
 		<div id="roll-call" style="display:none">
 			<button   onclick="rollCall()">Call the Roll</button>
 		</div>
+
 		<div id="quorum-count" style="display:none">
 			<h3>Quorum Count</h3>
 			<!--Input the number of senators in country -->
-			<button id="clickme">Total Senators in Country: 0</button>
+			<h4>Total Senators in Country: </h4><h4 id="senatorCount">0.</h4>
+			<button id="increaseCount">+</button>
+			<button id="decreaseCount">-</button>
 
 			<!-- Running total of needed senators for a quorum-->
 			<p id="quorum">Required number of Senators for a quorum: 0</p>
 			<!--Running total of present senators -->
-			<p>Senators Present: 0</p>
+			<p id="runningQuorum">Senators Present: 0</p>
 			<div id="confirm">
 				<div class="message"></div>
 				<button class="yes">Yes</button>
@@ -34,29 +51,35 @@
       },
       function no() {
          alert("no")
-      });'>Count Senators Attendance</button><br/>
-
-
+      });'>Count Senators' Attendance</button><br/>
+			<button onclick="establishQuorum();">Proceed To Parliamentary Business</button>
 		</div>
 
-		<div class="inline"><b>Current Proposal:</b> <input type="text"></div>
-		<button type="button" id="second" style="display:none" onclick="seconded()">Needs a second</button>
-		<div id="open-to-committee" style="display:none">
-			<button type="button" >Amend </button>
-			<button type="button" >Move to Committee</button>
-			<button type="button" >Postpone</button>
-			<button type="button" >Postpone</button>
+		<div id="quorum-established" style="display:none">
+			<div class="inline"><b>Current Proposal:</b> <input id="motion-input" type="text"></div>
+		</div>
+		<div id="second-required" style="display:none">
+			<button onclick="seconded()">Motion needs a second</button>
 		</div>
 
+		<div id="amendmentFocus"></div>
 
-		<button type="button" onclick="show('id1');">Button 1</button>
-		<button type="button" onclick="show('id2');">Button 2</button>
-		<button type="button" onclick="show('id3');">Button 3</button>
+		<div id="proposal-seconded" style="display:none">
+			<button type="button" onclick="amendment();">Amend </button>
+			<button type="button" onclick="table();">Table</button>
+			<button type="button" onclick="debate();">Debate</button>
+			<button type="button" onclick="show('id1');">Move to Committee</button>
+			<button type="button" onclick="show('id2');">Postpone</button>
+			<button type="button" onclick="show('id3');">Point of Order</button>
+			<button type="button" onclick="show('id4');">Point of Info</button>
+			<button type="button" onclick="moveToPass()">Call The Question</button>
 
-
-		<div id="id1"  style="display:none">text 1</div>
-		<div id="id2"  style="display:none">text 2</div>
-		<div id="id3"  style="display:none">text 3</div>
+			<div id="id1"  style="display:none">Went to committee, your in that committee considering the measure. </div>
+			<div id="id2"  style="display:none">Measure postponed and brought back up later.</div>
+			<div id="id3"  style="display:none">Point of Order answered</div>
+			<div id="id4"  style="display:none">Point of Inquiry answered</div>
+			<div id="id5"  style="display:none">The main motion has passed. On to new business</div>
+		</div>
 		<script src="javascript/script.js"></script>
 	</body>
 </html>
