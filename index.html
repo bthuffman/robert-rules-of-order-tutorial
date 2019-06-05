@@ -6,80 +6,87 @@
 		<title>Robert Rules of Order</title>
 		<link rel="stylesheet" href="stylesheets/style.css">
 		<!--Bootstrap style-->
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
-				integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-		<!--Bootstrap Scripts-->
-		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-				  integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-				  crossorigin="anonymous"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
-				  integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
-				  crossorigin="anonymous"></script>
-		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
-				  integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
-				  crossorigin="anonymous"></script>
 	</head>
 	<body>
-		<h1>Parliament</h1>
+<div class="container-fluid">
+		<div class="card" style="width: 18rem;">
+			<div class="card-body">
+				<h1 class="card-title text-center">Welcome to Parliament!</h1>
+				<div id="introduction" style="display:block">
+				<h6 class="card-subtitle mb-2 text-muted">Mr. Chairman you lead the committee.</h6>
+				<p class="card-text">Follow the prompts to learn more about what it takes to run a meeting under Robert's Rules of Order.</p>
+				</div>
+				<button type="button" id="call-to-order" style="display:block" onclick="callToOrder()">Call To Order</button>
+				<div id="roll-call" style="display:none">
+					<button   onclick="rollCall()">Call the Roll</button>
+				</div>
+				<div id="quorum-count" style="display:none">
+					<h3>Quorum Count</h3>
+					<!--Input the number of senators in country -->
+					<h3>Total Senators in Country: <span id="senatorCount">0.</span></h3>
+					<button id="increaseCount">+</button>
+					<button id="decreaseCount">-</button>
 
-		<button type="button" id="call-to-order" style="display:block" onclick="callToOrder()">Call To Order</button>
-
-		<div id="roll-call" style="display:none">
-			<button   onclick="rollCall()">Call the Roll</button>
-		</div>
-
-		<div id="quorum-count" style="display:none">
-			<h3>Quorum Count</h3>
-			<!--Input the number of senators in country -->
-			<h4>Total Senators in Country: </h4><h4 id="senatorCount">0.</h4>
-			<button id="increaseCount">+</button>
-			<button id="decreaseCount">-</button>
-
-			<!-- Running total of needed senators for a quorum-->
-			<p id="quorum">Required number of Senators for a quorum: 0</p>
-			<!--Running total of present senators -->
-			<p id="runningQuorum">Senators Present: 0</p>
-			<div id="confirm">
-				<div class="message"></div>
-				<button class="yes">Yes</button>
-				<button class="no">No</button>
-			</div>
-			<button onclick = 'functionConfirm("Is the Senator Present?", function yes() {
+					<!-- Running total of needed senators for a quorum-->
+					<p id="quorum">Required number of Senators for a quorum: 0</p>
+					<!--Running total of present senators -->
+					<p id="runningQuorum">Senators Present: 0</p>
+					<div id="confirm">
+						<div class="message"></div>
+						<button class="yes">Yes</button>
+						<button class="no">No</button>
+					</div>
+					<button onclick = 'functionConfirm("Is the Senator Present?", function yes() {
          alert("Yes");
          quorumCounting();
       },
       function no() {
          alert("no")
       });'>Count Senators' Attendance</button><br/>
-			<button onclick="establishQuorum();">Proceed To Parliamentary Business</button>
-		</div>
+					<button onclick="establishQuorum();">Proceed To Parliamentary Business</button>
+				</div>
 
-		<div id="quorum-established" style="display:none">
-			<div class="inline"><b>Current Proposal:</b> <input id="motion-input" type="text"></div>
-		</div>
-		<div id="second-required" style="display:none">
-			<button onclick="seconded()">Motion needs a second</button>
-		</div>
+				<div id="quorum-established" style="display:none">
+					<div class="inline"><b>Current Proposal:</b> <input id="motion-input" type="text"></div>
+				</div>
+				<div id="second-required" style="display:none">
+					<button onclick="seconded()">Motion needs a second</button>
+				</div>
 
-		<div id="amendmentFocus"></div>
+				<div id="amendmentFocus"></div>
 
-		<div id="proposal-seconded" style="display:none">
-			<button type="button" onclick="amendment();">Amend </button>
-			<button type="button" onclick="table();">Table</button>
-			<button type="button" onclick="debate();">Debate</button>
-			<button type="button" onclick="show('id1');">Move to Committee</button>
-			<button type="button" onclick="show('id2');">Postpone</button>
-			<button type="button" onclick="show('id3');">Point of Order</button>
-			<button type="button" onclick="show('id4');">Point of Info</button>
-			<button type="button" onclick="moveToPass()">Call The Question</button>
+				<div id="proposal-seconded" style="display:none">
+					<button type="button" onclick="amendment();">Amend </button>
+					<button type="button" onclick="table();">Table</button>
+					<button type="button" onclick="debate();">Debate</button>
+					<button type="button" onclick="show('id1');">Move to Committee</button>
+					<button type="button" onclick="show('id2');">Postpone</button>
+					<button type="button" onclick="show('id3');">Point of Order</button>
+					<button type="button" onclick="show('id4');">Point of Info</button>
+					<button type="button" onclick="moveToPass()">Call The Question</button>
 
-			<div id="id1"  style="display:none">Went to committee, your in that committee considering the measure. </div>
-			<div id="id2"  style="display:none">Measure postponed and brought back up later.</div>
-			<div id="id3"  style="display:none">Point of Order answered</div>
-			<div id="id4"  style="display:none">Point of Inquiry answered</div>
-			<div id="id5"  style="display:none">The main motion has passed. On to new business</div>
+					<div id="id1"  style="display:none">Went to committee, your in that committee considering the measure. </div>
+					<div id="id2"  style="display:none">Measure postponed and brought back up later.</div>
+					<div id="id3"  style="display:none">Point of Order answered</div>
+					<div id="id4"  style="display:none">Point of Inquiry answered</div>
+					<div id="id5"  style="display:none">The main motion has passed. On to new business</div>
+				</div>
+			</div>
 		</div>
+</div>
+
+
+
+
+
+
+
 		<script src="javascript/script.js"></script>
+		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 	</body>
 </html>

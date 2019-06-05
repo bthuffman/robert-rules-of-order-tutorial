@@ -23,3 +23,10 @@
 #confirm .message {
 	text-align: left;
 }
+
+/*Center bootstrap card*/
+.card {
+	margin: 0 auto; /* Added */
+	float: none; /* Added */
+	margin-bottom: 10px; /* Added */
+}

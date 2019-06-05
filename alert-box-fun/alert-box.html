@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Title</title>
+		<link type="stylesheet" href="alert-box-style.css">
+		<script src="alert-box-script.js"></script>
+	</head>
+	<body>
+
+<!--		dialog box-->
+		<div id="dialogoverlay"></div>
+		<div id="dialogbox">
+			<div>
+				<div id="dialogboxhead"></div>
+				<div id="dialogboxbody"></div>
+				<div id="dialogboxfoot"></div>
+			</div>
+		</div>
+		<h1>An important title hierarchy</h1>
+		<button onclick="alert('You look great today!')">Initiate Default Alert</button>
+		<button onclick="Alert.render('You look great today!')">Custom Alert</button>
+	</body>
+</html>

@@ -13,6 +13,7 @@ function callToOrder(){
 	window.alert("This session of Parliament is now in order! ")
 	show("roll-call");
 	hide("call-to-order");
+	hide("introduction");
 }
 
 function rollCall() {
@@ -32,14 +33,18 @@ var quorum = document.getElementById("quorum");
 var buttonIncreaseCount = document.getElementById("increaseCount");
 buttonIncreaseCount.onclick = function increaseSenators() {
 	totalCount += 1;
-	buttonTotalCount.innerHTML = totalCount;
+	buttonTotalCount.innerHTML = totalCount + ".";
 	quorum.innerHTML = "Required number of Senators for a Quorum: " + Math.round(totalCount/2)  + ".";
 };
 var buttonDecreaseCount = document.getElementById("decreaseCount");
 buttonDecreaseCount.onclick = function increaseSenators() {
-	totalCount -= 1;
-	buttonTotalCount.innerHTML = totalCount;
-	quorum.innerHTML = "Required number of Senators for a Quorum: " + Math.round(totalCount/2) + ".";
+	if(totalCount === 0) {
+		buttonTotalCount.innerHTML = totalCount + ".";
+	} else {
+		totalCount -= 1;
+		buttonTotalCount.innerHTML = totalCount + ".";
+		quorum.innerHTML = "Required number of Senators for a Quorum: " + Math.round(totalCount / 2) + ".";
+	}
 };
 
 /*Mark a Senator as Present*/
